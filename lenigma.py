@@ -270,75 +270,92 @@ class Symbol:
         return (self.end_sample - self.start_sample) * 1000.0 / SAMPLE_RATE
 
 
-def _tone_regions(samples: Sequence[int],
-                  min_tone_ms: float = 40.0,
-                  silence_ms: float = 10.0) -> list[tuple[int, int]]:
-    """
-    Segment `samples` into contiguous regions where the envelope is
-    above a noise-floor threshold. Find edges first, then run one FFT
-    per region (sliding-window FFT is vulnerable to transition artefacts).
-    """
-    n = len(samples)
-    if n == 0:
-        return []
-    win = max(64, int(SAMPLE_RATE * silence_ms / 1000.0))
-    half = win // 2
-    env = [0.0] * n
-    # Centred moving average of |samples|. Build via running sum over
-    # [i-half, i+half) with explicit bounds clipping so partial windows
-    # at the buffer edges are divided by their actual length, not `win`.
-    abs_s = [abs(s) for s in samples]
-    # prefix sums: psum[k] = sum(abs_s[0..k-1])
-    psum = [0] * (n + 1)
-    for k in range(n):
-        psum[k + 1] = psum[k] + abs_s[k]
-    for i in range(n):
-        lo = max(0, i - half)
-        hi = min(n, i + half + 1)
-        env[i] = (psum[hi] - psum[lo]) / (hi - lo)
+# Sliding-FFT step in samples. 20 ms at 16 kHz = 320 samples. Short
+# enough to localise tone onsets within real recordings (where beeps
+# have soft attack envelopes), long enough to keep the per-decode cost
+# bounded.
+HOP = 320
 
-    peak = max(env) if env else 0.0
-    thresh = max(50.0, 0.15 * peak)
-
-    regions: list[tuple[int, int]] = []
-    in_tone = False
-    start = 0
-    silence_gap = int(SAMPLE_RATE * silence_ms / 1000.0)
-    min_len = int(SAMPLE_RATE * min_tone_ms / 1000.0)
-    i = 0
-    while i < n:
-        if not in_tone and env[i] > thresh:
-            start = i
-            in_tone = True
-            i += 1
-            continue
-        if in_tone and env[i] <= thresh:
-            end_probe = min(i + silence_gap, n)
-            if all(env[j] <= thresh for j in range(i, end_probe)):
-                if i - start >= min_len:
-                    regions.append((start, i))
-                in_tone = False
-                i = end_probe
-                continue
-        i += 1
-    if in_tone and n - start >= min_len:
-        regions.append((start, n))
-    return regions
+# Drop any symbol shorter than this after merging same-label hops.
+# Real smart-beep tones are ~100 ms; classification flicker at tone
+# boundaries lasts ~20-40 ms (one or two hops while the FFT window
+# straddles a silence gap between adjacent tones). 60 ms is the sweet
+# spot: filters out the flicker without eating into real tones.
+MIN_SYMBOL_MS = 60.0
 
 
 def symbols(samples: Sequence[int]) -> list[Symbol]:
-    """Segment `samples` into tone regions, run one FFT per region, classify."""
-    out: list[Symbol] = []
-    for start, end in _tone_regions(samples):
-        region_len = end - start
-        if region_len < FFT_SIZE:
-            continue
-        offset = start + (region_len - FFT_SIZE) // 2
-        hz = dominant_hz(samples, offset)
+    """
+    Slide a 1024-sample FFT across `samples` at HOP spacing, classify
+    each window's dominant frequency into a protocol symbol (or None
+    if the FFT's peak-minus-mean margin is below threshold), then merge
+    consecutive windows with the same label into one Symbol. Ultra-short
+    runs (below MIN_SYMBOL_MS) are discarded as classification flicker
+    at tone boundaries.
+    """
+    n = len(samples)
+    if n < FFT_SIZE:
+        return []
+
+    # Pass 1: per-hop classification.
+    positions: list[int] = []
+    freqs: list[float] = []
+    labels: list[str] = []
+    i = 0
+    while i + FFT_SIZE <= n:
+        hz = dominant_hz(samples, i)
         label = classify(hz) if hz > 0 else None
-        if label is None:
+        positions.append(i)
+        freqs.append(hz)
+        labels.append(label or "")
+        i += HOP
+
+    # Pass 2: compress into (label, start_hop, end_hop) runs.
+    runs: list[tuple[str, int, int]] = []
+    j = 0
+    while j < len(labels):
+        k = j
+        while k < len(labels) and labels[k] == labels[j]:
+            k += 1
+        runs.append((labels[j], j, k))
+        j = k
+
+    # Pass 3: collapse a short run sandwiched between two longer same-
+    # label runs into a silence break. This is the classic FFT-band-
+    # crossing transient when two same-band tones abut across a short
+    # gap — the FFT window spans the boundary and the peak briefly
+    # drifts into an adjacent band. Treating it as a break (rather
+    # than merging) preserves the two-symbol count.
+    min_len_hops = max(1, int(SAMPLE_RATE * MIN_SYMBOL_MS / 1000.0) // HOP)
+    smoothed: list[tuple[str, int, int]] = []
+    r = 0
+    while r < len(runs):
+        lbl, a, b = runs[r]
+        length = b - a
+        if (lbl and length < min_len_hops
+                and 0 < r < len(runs) - 1
+                and runs[r - 1][0] == runs[r + 1][0]
+                and runs[r - 1][0]  # both neighbours are real tones
+                and (runs[r - 1][2] - runs[r - 1][1]) >= min_len_hops
+                and (runs[r + 1][2] - runs[r + 1][1]) >= min_len_hops):
+            # Replace with a silence run; leave the two neighbours as
+            # separate same-label runs so they emit two symbols.
+            smoothed.append(("", a, b))
+        else:
+            smoothed.append((lbl, a, b))
+        r += 1
+
+    # Pass 4: emit Symbols for each run that is both labelled and long
+    # enough to not be classification flicker.
+    out: list[Symbol] = []
+    for lbl, a, b in smoothed:
+        if not lbl or (b - a) < min_len_hops:
             continue
-        out.append(Symbol(label, start, end, hz))
+        start_sample = positions[a]
+        end_sample = positions[b] if b < len(positions) else positions[-1] + FFT_SIZE
+        hs = [freqs[k] for k in range(a, b) if freqs[k] > 0]
+        mean_hz = sum(hs) / len(hs) if hs else 0.0
+        out.append(Symbol(lbl, start_sample, end_sample, mean_hz))
     return out
 
 
