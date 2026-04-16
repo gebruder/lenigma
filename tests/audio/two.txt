@@ -1,0 +1,3 @@
+# partial recording — START + 8 nibbles detected at 17.1 s, no STOP.
+# Same pattern as one.wav (help video where only the loudest tones
+# are audible). Informational sample, not an assertion.

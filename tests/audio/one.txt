@@ -1,0 +1,4 @@
+# partial recording — START + 7 nibbles detected, no STOP.
+# Captured from a short help video; the rest of the transmission
+# dropped below the mic's detection threshold. Kept as an
+# informational sample, not an assertion.

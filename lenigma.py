@@ -498,6 +498,35 @@ def decode_wav(path: str) -> dict:
 # ===========================================================================
 # CLI
 # ===========================================================================
+def _describe_partial(symbols_list: list) -> str | None:
+    """
+    If the symbol stream starts with START but never reaches STOP with
+    a valid-length payload, return a short diagnostic line describing
+    what was captured. Helps users of truncated recordings (e.g. help
+    videos that cut off mid-transmission) understand why no code was
+    decoded. Returns None if there's no partial-message pattern.
+    """
+    labels = [s.label for s in symbols_list]
+    if "START" not in labels:
+        return None
+    i = labels.index("START")
+    nibbles_after_start = [l for l in labels[i + 1:] if l != "START" and l != "STOP"]
+    has_stop = "STOP" in labels[i + 1:]
+    n = len(nibbles_after_start)
+    if has_stop and n in (18, 22):
+        return None  # Full message — already surfaced via result.messages.
+    if n == 0:
+        return "START detected but no data nibbles followed"
+    nib_str = "".join(nibbles_after_start[:24])
+    if has_stop:
+        return (f"partial message: START + {n} nibble{'s' if n != 1 else ''} "
+                f"({nib_str}) + STOP — {n} isn't a valid message length "
+                f"(18 for serial, 22 for code)")
+    return (f"partial message: START + {n} nibble{'s' if n != 1 else ''} "
+            f"({nib_str}), no STOP — recording may be truncated before the "
+            f"transmission completed")
+
+
 def _print_result(result: dict, verbose: bool = False) -> bool:
     """Pretty-print decoded result; returns True if anything decoded."""
     if verbose:
@@ -518,6 +547,10 @@ def _print_result(result: dict, verbose: bool = False) -> bool:
                 line += f"   — {_safe_str(desc)}"
             print(line)
             anything = True
+    if not anything:
+        partial = _describe_partial(result.get("symbols", []))
+        if partial:
+            print(_safe_str(partial))
     return anything
 
 

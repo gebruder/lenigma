@@ -109,14 +109,18 @@ def run_audio_samples() -> tuple[int, int]:
     """
     Scan tests/audio/*.wav and check each against its expected codes.
 
-    Expected codes are taken from:
-      1. the first dash-separated token of the filename, e.g.
-         `S001-thinkstation-p520-bench.wav` -> ["S001"]
-      2. a sibling `.txt` with the same base name containing a
-         comma-separated list of codes (overrides / extends the filename
-         expectation when present). Lines starting with '#' are ignored.
+    Expected codes come from, in order:
+      1. a sibling `.txt` with the same base name, containing one or
+         more lines of comma-separated codes. Lines starting with `#`
+         are comments and ignored. A `.txt` that exists but has no
+         non-comment content marks the file as INFORMATIONAL — it
+         decodes and reports but never fails the run.
+      2. the first dash-separated token of the filename, e.g.
+         `S001-thinkstation-p520-bench.wav` -> `S001`.
 
-    Returns (passed, total). Silently skips if the audio dir is empty.
+    Returns (passed, total_assertive). Files in informational mode are
+    reported but excluded from total_assertive so they can't fail CI.
+    The whole step silently no-ops if the audio dir is empty.
     """
     audio_dir = Path(__file__).resolve().parent / "audio"
     wavs = sorted(audio_dir.glob("*.wav")) if audio_dir.is_dir() else []
@@ -124,30 +128,44 @@ def run_audio_samples() -> tuple[int, int]:
         return 0, 0
     print(f"\nReal-audio samples ({len(wavs)} file{'s' if len(wavs) != 1 else ''}):")
     passed = 0
+    assertive_total = 0
     for wav in wavs:
         stem = wav.stem
         expected: list[str] = []
         txt = wav.with_suffix(".txt")
-        if txt.is_file():
+        txt_present = txt.is_file()
+        if txt_present:
             for line in txt.read_text().splitlines():
                 line = line.split("#", 1)[0].strip()
                 if not line:
                     continue
                 expected.extend(c.strip() for c in line.split(",") if c.strip())
-        if not expected:
+        elif stem:
             first_token = stem.split("-", 1)[0]
             if first_token:
                 expected = [first_token]
-        if not expected:
-            print(f"  SKIP {wav.name}: no expected codes (filename or .txt)")
-            continue
 
         try:
             result = decode_wav(str(wav))
         except Exception as e:
             print(f"  FAIL {wav.name}: decode raised {type(e).__name__}: {e}")
+            assertive_total += 1
             continue
+
         got = result["codes"]
+
+        if txt_present and not expected:
+            # Informational sample — report but don't assert.
+            tones = [s.label for s in result["symbols"]]
+            summary = (f"{len(tones)} tone{'s' if len(tones) != 1 else ''}"
+                       + (f", codes={got}" if got else ", no complete message"))
+            print(f"  INFO {wav.name}: {summary}")
+            continue
+
+        assertive_total += 1
+        if not expected:
+            print(f"  SKIP {wav.name}: no expected codes (filename or .txt)")
+            continue
         missing = [c for c in expected if c not in got]
         if missing:
             print(f"  FAIL {wav.name}: expected {expected}, missing {missing}, "
@@ -157,7 +175,7 @@ def run_audio_samples() -> tuple[int, int]:
             note = f" (+extra {extra})" if extra else ""
             print(f"  PASS {wav.name}: codes={got}{note}")
             passed += 1
-    return passed, len(wavs)
+    return passed, assertive_total
 
 
 def main() -> int:
