@@ -3,11 +3,9 @@
 Decode Lenovo ThinkStation / ThinkPad smart-beep error codes on Linux.
 
 A Lenovo workstation that can't boot plays its error code as a sequence
-of narrow-band tones (FSK, not Morse-style beep counts). The official
-Android app decodes these, but it's gated by Play Store availability and
-device-compatibility checks that exclude many modern phones. `lenigma`
-does the same decoding from any Linux machine with a microphone, a WAV
-file, or raw PCM bytes.
+of narrow-band tones (FSK, not Morse-style beep counts). `lenigma`
+decodes these from any Linux machine with a microphone, a WAV file,
+or raw PCM bytes.
 
 ## Install
 
