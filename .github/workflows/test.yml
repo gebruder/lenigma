@@ -1,0 +1,28 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Round-trip decoder tests
+        run: python tests/test_roundtrip.py
+      - name: CLI smoke tests
+        run: |
+          python lenigma.py lookup 0281
+          python lenigma.py lookup S001
+          python lenigma.py lookup B8FF    # hex wildcard should resolve to B8xx
+          python lenigma.py lookup 281     # short form should zero-pad
+          python lenigma.py list > /dev/null

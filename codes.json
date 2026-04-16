@@ -1,0 +1,2703 @@
+{
+  "0001": {
+    "description": "Platform reset line stayed asserted during boot; clear CMOS and retry",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "1. Remove all power resources (the ac power adapter, removable battery, and coin-cell battery). If your computer has a built-in battery, reset the computer by inserting a straightened paper clip into the emergency-reset hole. Wait for one minute. Then reconnect all power resources. 2. Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0002": {
+    "description": "Internal chipset bus failed a self-test",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0281": {
+    "description": "Embedded controller reported a generic fault",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0282": {
+    "description": "Memory module failed self-test; reseat DIMMs",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "1. Reinstall or replace the memory module. 2. Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0283": {
+    "description": "PCI bus resource assignment failed",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "1. Remove PCIe devices (the M.2 card, PCIe card, and so on) (service provider only). 2. Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0284": {
+    "description": "TCG subsystem fault; likely a BIOS code-integrity check failure",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0285": {
+    "description": "TCG subsystem fault; likely a TPM initialisation failure",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0286": {
+    "description": "Integrated GPU failed to initialise",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0287": {
+    "description": "Discrete GPU failed to initialise",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "1. Reinstall or replace the discrete graphics card (service provider only). 2. Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "0288": {
+    "description": "Display panel failed to initialise",
+    "severity": "info",
+    "category": "ThinkPad",
+    "origin": "thinkpad",
+    "repairs": [
+      "1. Reconnect the display cable on both the system board side and the computer display side (service provider only). 2. Replace the system board (service provider only)."
+    ],
+    "sources": []
+  },
+  "B0xx": {
+    "description": "System halted during POST; the last two hex digits identify the POST stage",
+    "severity": "cat",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "For B0##, the ## represents the BIOS port 80 checkpoint code",
+      "Codes are sometimes redundant between different suppliers of ThinkStation BIOS - AMI, Intel, ROM vendors",
+      "At this time, we do not have a compiled list of checkpoint codes to offer"
+    ]
+  },
+  "B201": {
+    "description": "Intel Management Engine reported a warning",
+    "severity": "warn",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code B202."
+    ]
+  },
+  "B202": {
+    "description": "Intel Management Engine reported an error",
+    "severity": "err",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Intel(R) Management Engine has reported a error"
+    ]
+  },
+  "B2Fx": {
+    "description": "Intel Management Engine reset; the last hex digit identifies the reason",
+    "severity": "info",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "B4FF": {
+    "description": "Simulated critical error (test harness only; not a real fault)",
+    "severity": "cat",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "No action required.",
+      "If this were a real event, suggested actions to resolve the event would be listed in this section."
+    ],
+    "sources": [
+      "This error is a simulated event through software.",
+      "Hardware is not affected.",
+      "If this were a real event, potential sources for the event would be listed in this section."
+    ]
+  },
+  "B4x0": {
+    "description": "Option ROM failed to initialise; the second hex digit is the slot",
+    "severity": "err",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "If the device listed in error title remains in the system, remove the device, or disable in BIOS setup.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The firmware for the device listed in the title has reported an error"
+    ]
+  },
+  "B4x1": {
+    "description": "Storage controller option ROM failed to initialise; the second hex digit is the slot",
+    "severity": "err",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "If the device listed in error title remains in the system, remove the device, or disable in BIOS setup.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The firmware for the device listed in the title has reported an error"
+    ]
+  },
+  "B4x2": {
+    "description": "Network card option ROM failed to initialise; the second hex digit is the slot",
+    "severity": "err",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "If the device listed in error title remains in the system, remove the device, or disable in BIOS setup.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The firmware for the device listed in the title has reported an error"
+    ]
+  },
+  "B4x3": {
+    "description": "Video card option ROM failed to initialise; the second hex digit is the slot",
+    "severity": "err",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "If the device listed in error title remains in the system, remove the device, or disable in BIOS setup.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The firmware for the device listed in the title has reported an error"
+    ]
+  },
+  "B4x4": {
+    "description": "I/O bus option ROM failed to initialise; the second hex digit is the slot",
+    "severity": "err",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "If the device listed in error title remains in the system, remove the device, or disable in BIOS setup.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The firmware for the device listed in the title has reported an error"
+    ]
+  },
+  "B500": {
+    "description": "Recorded model or serial number has changed since last boot",
+    "severity": "info",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "B501": {
+    "description": "Installed hardware may draw more than the power supply can deliver",
+    "severity": "warn",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "B69x": {
+    "description": "Faulty memory row on a CPU 1 DIMM was not repaired; the last hex digit is the DIMM slot",
+    "severity": "info",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "B6Ax": {
+    "description": "Faulty memory row on a CPU 2 DIMM was not repaired; the last hex digit is the DIMM slot",
+    "severity": "info",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "B6xx": {
+    "description": "A faulty memory row was repaired in place",
+    "severity": "info",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "B7xx": {
+    "description": "Memory subsystem warning; the last two hex digits identify the specific fault",
+    "severity": "warn",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code B8xx."
+    ]
+  },
+  "B8xx": {
+    "description": "Critical memory error; system cannot continue",
+    "severity": "cat",
+    "category": "BIOS",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove and reinstall all DIMMs to ensure good connection.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Swap CPU1 and CPU2. If only one CPU, reseat the CPU.  WARNING: Care must be taken when removing/addings CPUs.  If not familiar with this process, skip this step.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The memory handler has reported a critical error to BIOS",
+      "Defective DIMM or poor DIMM connection.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "C000": {
+    "description": "Chassis intrusion detected: the system cover was opened",
+    "severity": "info",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "C100": {
+    "description": "Backplane S/X cable is connected incorrectly",
+    "severity": "info",
+    "category": "Storage",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "C31x": {
+    "description": "Backplane P1 or P2 cable is connected incorrectly; the last hex digit is the drive index",
+    "severity": "err",
+    "category": "Storage",
+    "origin": "thinkstation",
+    "repairs": [
+      "The \"P1\" and \"P2\" cables may only be connected to Broadcom storage adapters.",
+      "The Broadcom adapter has four connectors: 0, 1, 2, 3.  \"P1\" must be connected to connector 0 or 2.  \"P2\" must be connected to connector immediately after \"P1\" - 1 or 3."
+    ],
+    "sources": [
+      "The blind connect cables labeled \"P1\" and \"P2\" have been detected in unsupported connections"
+    ]
+  },
+  "C41x": {
+    "description": "Backplane P1 or P2 cable is connected incorrectly; the last hex digit is the drive index",
+    "severity": "err",
+    "category": "Storage",
+    "origin": "thinkstation",
+    "repairs": [
+      "The \"P1\" and \"P2\" cables may only be connected to Broadcom storage adapters.",
+      "The Broadcom adapter has four connectors: 0, 1, 2, 3.  \"P1\" must be connected to connector 0 or 2.  \"P2\" must be connected to connector immediately after \"P1\" - 1 or 3."
+    ],
+    "sources": [
+      "The blind connect cables labeled \"P1\" and \"P2\" have been detected in unsupported connections"
+    ]
+  },
+  "C500": {
+    "description": "Could not read backplane cabling configuration",
+    "severity": "info",
+    "category": "Storage",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "D11x": {
+    "description": "U.2 PCIe SSD is installed in the wrong slot; the last hex digit is the drive index",
+    "severity": "err",
+    "category": "Storage",
+    "origin": "thinkstation",
+    "repairs": [
+      "For P920, flip the tray so that the U.2 drive is on the bottom.  Install first U.2 in bay 4, then the next in bay 3, bay 2, and finally bay 1.",
+      "For P720, flip the tray so that the U.2 drive is on the top.  Install first U.2 in bay 1, then the 2nd drive in bay 2."
+    ],
+    "sources": [
+      "The system has determined the 2.5 inch PCIe U.2 drive is installed in a port that does not support PCIe"
+    ]
+  },
+  "F110": {
+    "description": "CPU 1 fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F111."
+    ]
+  },
+  "F111": {
+    "description": "CPU 1 fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F120": {
+    "description": "CPU 2 fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F121."
+    ]
+  },
+  "F121": {
+    "description": "CPU 2 fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F210": {
+    "description": "Upper front fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F211."
+    ]
+  },
+  "F211": {
+    "description": "Upper front fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F220": {
+    "description": "Lower front fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F221."
+    ]
+  },
+  "F221": {
+    "description": "Lower front fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F230": {
+    "description": "Rear fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F231."
+    ]
+  },
+  "F231": {
+    "description": "Rear fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F240": {
+    "description": "Upper memory fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F241."
+    ]
+  },
+  "F241": {
+    "description": "Upper memory fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F250": {
+    "description": "Lower memory fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F251."
+    ]
+  },
+  "F251": {
+    "description": "Lower memory fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F310": {
+    "description": "Front fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F311."
+    ]
+  },
+  "F311": {
+    "description": "Front fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F320": {
+    "description": "Rear fan 1 is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F321."
+    ]
+  },
+  "F321": {
+    "description": "Rear fan 1 has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F330": {
+    "description": "Rear fan 2 is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F331."
+    ]
+  },
+  "F331": {
+    "description": "Rear fan 2 has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F410": {
+    "description": "Power supply fan 1 is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F411."
+    ]
+  },
+  "F411": {
+    "description": "Power supply fan 1 has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in power supply inlet inside the computer.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F420": {
+    "description": "Power supply fan 2 is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F421."
+    ]
+  },
+  "F421": {
+    "description": "Power supply fan 2 has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in power supply inlet inside the computer.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F430": {
+    "description": "Power supply fan is running outside its expected speed range",
+    "severity": "warn",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code F431."
+    ]
+  },
+  "F431": {
+    "description": "Power supply fan has failed",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in power supply inlet inside the computer.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "F5x1": {
+    "description": "Quad M.2 adapter fan has failed; the second hex digit is the adapter index",
+    "severity": "err",
+    "category": "Fans",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for foreign object in fan.",
+      "Check that all fans are connected.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power to the fan is abnormal.",
+      "A foreign object may be blocking or slowing the fan."
+    ]
+  },
+  "N000": {
+    "description": "Power button was pressed",
+    "severity": "info",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "P100": {
+    "description": "AC input voltage is below tolerance",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P101."
+    ]
+  },
+  "P101": {
+    "description": "AC input voltage is critically low; system may shut down",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check the power cord, outlet, and circuit breaker.",
+      "Try a different outlet.",
+      "If the power circuit is subject to regular disturbance (brown-out), consider a battery back-up unit.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Circuit line disturbance (brown-out).",
+      "Power supply components wear."
+    ]
+  },
+  "P110": {
+    "description": "A power-supply output rail is critically low",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P120": {
+    "description": "A power-supply output rail is critically high",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power supply components wear."
+    ]
+  },
+  "P131": {
+    "description": "CPU 1 power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P141."
+    ]
+  },
+  "P132": {
+    "description": "Memory power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P142."
+    ]
+  },
+  "P133": {
+    "description": "CPU 2 power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P143."
+    ]
+  },
+  "P134": {
+    "description": "USB and other internal board components are drawing high power",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P144."
+    ]
+  },
+  "P135": {
+    "description": "Expansion slots 6, 7, 8 are drawing high power",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P145."
+    ]
+  },
+  "P136": {
+    "description": "Expansion slots 1, 2, 3, 4, 5 are drawing high power",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P146."
+    ]
+  },
+  "P137": {
+    "description": "Aux power cables P4 and P5 are delivering high current",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P147."
+    ]
+  },
+  "P138": {
+    "description": "Aux power cable P2 is delivering high current",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P148."
+    ]
+  },
+  "P139": {
+    "description": "Aux power cable P3 is delivering high current",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P149."
+    ]
+  },
+  "P141": {
+    "description": "CPU 1 power draw is critically high",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P142": {
+    "description": "Memory power draw is critically high",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P143": {
+    "description": "CPU 2 power draw is critically high",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P144": {
+    "description": "USB and other internal board components are drawing critically high power",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P145": {
+    "description": "Expansion slots 6, 7, 8 are drawing critically high power",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P146": {
+    "description": "Expansion slots 1, 2, 3, 4, 5 are drawing critically high power",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P147": {
+    "description": "Aux power cables P4 and P5 are delivering critically high current",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P148": {
+    "description": "Aux power cable P2 is delivering critically high current",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P149": {
+    "description": "Aux power cable P3 is delivering critically high current",
+    "severity": "cat",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Power supply components wear."
+    ]
+  },
+  "P150": {
+    "description": "Total system power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P151."
+    ]
+  },
+  "P151": {
+    "description": "Total system power draw is critically high",
+    "severity": "err",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Evaluate total system power, and reduce device or replace devices with lower power alternatives.",
+      "Continued alerts indicate a condition that could reduce the life of the power supply, or other system components.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "P210": {
+    "description": "Total system power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P211."
+    ]
+  },
+  "P211": {
+    "description": "Total system power draw is critically high",
+    "severity": "err",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Evaluate total system power, and reduce device or replace devices with lower power alternatives.",
+      "Continued alerts indicate a condition that could reduce the life of the power supply, or other system components.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "P220": {
+    "description": "Total system power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P221."
+    ]
+  },
+  "P221": {
+    "description": "Total system power draw is critically high",
+    "severity": "err",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Evaluate total system power, and reduce device or replace devices with lower power alternatives.",
+      "Continued alerts indicate a condition that could reduce the life of the power supply, or other system components.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "P230": {
+    "description": "Total system power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P231."
+    ]
+  },
+  "P231": {
+    "description": "Total system power draw is critically high",
+    "severity": "err",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Evaluate total system power, and reduce device or replace devices with lower power alternatives.",
+      "Continued alerts indicate a condition that could reduce the life of the power supply, or other system components.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "P240": {
+    "description": "Total system power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P241."
+    ]
+  },
+  "P241": {
+    "description": "Total system power draw is critically high",
+    "severity": "err",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Evaluate total system power, and reduce device or replace devices with lower power alternatives.",
+      "Continued alerts indicate a condition that could reduce the life of the power supply, or other system components.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "P250": {
+    "description": "Total system power draw is high",
+    "severity": "warn",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code P251."
+    ]
+  },
+  "P251": {
+    "description": "Total system power draw is critically high",
+    "severity": "err",
+    "category": "Power Supply",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Evaluate total system power, and reduce device or replace devices with lower power alternatives.",
+      "Continued alerts indicate a condition that could reduce the life of the power supply, or other system components.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S001": {
+    "description": "3.3 V standby rail is above tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S002."
+    ]
+  },
+  "S002": {
+    "description": "3.3 V standby rail is critically high",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S003": {
+    "description": "3.3 V standby rail is below tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S004."
+    ]
+  },
+  "S004": {
+    "description": "3.3 V standby rail is critically low",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S005": {
+    "description": "System failed to complete power-up initialisation",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power glitch.",
+      "Unexpected SW/HW malfunction.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S006": {
+    "description": "5 V standby rail failed to come up",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S007": {
+    "description": "5 V standby rail is above tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S008."
+    ]
+  },
+  "S008": {
+    "description": "5 V standby rail is critically high",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S009": {
+    "description": "5 V standby rail is below tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S010."
+    ]
+  },
+  "S010": {
+    "description": "5 V standby rail is critically low",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S012": {
+    "description": "Startup sequence timing was out of spec",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power glitch.",
+      "Unexpected SW/HW malfunction.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S013": {
+    "description": "Startup sequence timing was out of spec",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power glitch.",
+      "Unexpected SW/HW malfunction.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S014": {
+    "description": "Startup sequence timing was out of spec",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power glitch.",
+      "Unexpected SW/HW malfunction.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S016": {
+    "description": "12 V rail failed to come up",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S017": {
+    "description": "12 V rail is above tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S018."
+    ]
+  },
+  "S018": {
+    "description": "12 V rail is critically high",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S019": {
+    "description": "12 V rail is below tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S020."
+    ]
+  },
+  "S020": {
+    "description": "12 V rail is critically low",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S021": {
+    "description": "3.3 V main rail failed to come up",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S022": {
+    "description": "3.3 V main rail is above tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S023."
+    ]
+  },
+  "S023": {
+    "description": "3.3 V main rail is critically high",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S024": {
+    "description": "3.3 V main rail is below tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S025."
+    ]
+  },
+  "S025": {
+    "description": "3.3 V main rail is critically low",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S026": {
+    "description": "5 V main rail failed to come up",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S027": {
+    "description": "5 V main rail is above tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S028."
+    ]
+  },
+  "S028": {
+    "description": "5 V main rail is critically high",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S029": {
+    "description": "5 V main rail is below tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S030."
+    ]
+  },
+  "S030": {
+    "description": "5 V main rail is critically low",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Shut off the system.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S031": {
+    "description": "Power supply or motherboard voltage regulation fault",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S033": {
+    "description": "CPU voltage rail failed to come up",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Swap CPU1 and CPU2. If only one CPU, reseat the CPU.  WARNING: Care must be taken when removing/addings CPUs.  If not familiar with this process, skip this step.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S034": {
+    "description": "CPU voltage rail is above tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S035."
+    ]
+  },
+  "S035": {
+    "description": "CPU voltage rail is critically high",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Swap CPU1 and CPU2. If only one CPU, reseat the CPU.  WARNING: Care must be taken when removing/addings CPUs.  If not familiar with this process, skip this step.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S036": {
+    "description": "CPU voltage rail is below tolerance",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code S037."
+    ]
+  },
+  "S037": {
+    "description": "CPU voltage rail is critically low",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Swap CPU1 and CPU2. If only one CPU, reseat the CPU.  WARNING: Care must be taken when removing/addings CPUs.  If not familiar with this process, skip this step.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S040": {
+    "description": "Motherboard voltage regulator fault",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "S041": {
+    "description": "Motherboard voltage regulator fault",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove and reinstall all DIMMs to ensure good connection.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Swap CPU1 and CPU2. If only one CPU, reseat the CPU.  WARNING: Care must be taken when removing/addings CPUs.  If not familiar with this process, skip this step.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "Defective DIMM or poor DIMM connection."
+    ]
+  },
+  "S042": {
+    "description": "Motherboard voltage regulator fault",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Swap CPU1 and CPU2. If only one CPU, reseat the CPU.  WARNING: Care must be taken when removing/addings CPUs.  If not familiar with this process, skip this step.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "Defective CPU or poor CPU connection."
+    ]
+  },
+  "S043": {
+    "description": "Motherboard voltage regulator is reporting a warning",
+    "severity": "warn",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Foreign object causing a short.",
+      "A device in the system is working outside specification.",
+      "System device (adapters, memory, etc.) drawing too much power."
+    ]
+  },
+  "S044": {
+    "description": "Startup sequence timing was out of spec",
+    "severity": "cat",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Check for foreign objects on electronic components in the system.",
+      "Remove non-essential I/O such as USB keys. Remove non-essential devices, reducing to minimize memory and adapters. If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Power glitch.",
+      "Unexpected SW/HW malfunction.",
+      "A device in the system is working outside specification."
+    ]
+  },
+  "S050": {
+    "description": "An external device is drawing leakage current",
+    "severity": "err",
+    "category": "System Voltages & Power",
+    "origin": "thinkstation",
+    "repairs": [
+      "Replace the display port cable between system and monitor with a cable that meets VESA specifications.  The cable that shipped with your monitor should meet specifications."
+    ],
+    "sources": [
+      "Display port cable does not meet VESA specification, driving power back into system.  This source may cause the diagnostic system to report other errors."
+    ]
+  },
+  "S100": {
+    "description": "CPU 1 reported a general alert",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "These events can be triggered by several events on the PCIe bus.  Most likely, no remediation is required.  But if other event codes occur, follow the actions for those codes."
+    ],
+    "sources": []
+  },
+  "S101": {
+    "description": "CPU 2 reported a general alert",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "These events can be triggered by several events on the PCIe bus.  Most likely, no remediation is required.  But if other event codes occur, follow the actions for those codes."
+    ],
+    "sources": []
+  },
+  "S110": {
+    "description": "CPU 1 reported a general error",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "These events can be triggered by several events on the PCIe bus.  Most likely, no remediation is required.  But if other event codes occur, follow the actions for those codes."
+    ],
+    "sources": []
+  },
+  "S111": {
+    "description": "CPU 2 reported a general error",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "These events can be triggered by several events on the PCIe bus.  Most likely, no remediation is required.  But if other event codes occur, follow the actions for those codes."
+    ],
+    "sources": []
+  },
+  "S120": {
+    "description": "CPU 1 general failure",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "These events can be triggered by several events on the PCIe bus.  Most likely, no remediation is required.  But if other event codes occur, follow the actions for those codes."
+    ],
+    "sources": []
+  },
+  "S121": {
+    "description": "CPU 2 general failure",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "These events can be triggered by several events on the PCIe bus.  Most likely, no remediation is required.  But if other event codes occur, follow the actions for those codes."
+    ],
+    "sources": []
+  },
+  "S200": {
+    "description": "Critical system alert",
+    "severity": "cat",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Remove and reinstall all DIMMs to ensure good connection.",
+      "Remove any devices (adapters, memory, etc.) installed after the system was received from Lenovo.",
+      "Remove non-essential I/O such as USB keys.  Remove non-essential devices, reducing to minimize memory and adapters.  If the diagnostic alert is resolved, add back devices one at a time to determine problem device.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "A device in the system is working outside specification.",
+      "Unexpected SW/HW malfunction.",
+      "Defective CPU or poor CPU connection."
+    ]
+  },
+  "S201": {
+    "description": "System recovered from a general alert",
+    "severity": "warn",
+    "category": "System",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": []
+  },
+  "T110": {
+    "description": "CPU 1 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T112."
+    ]
+  },
+  "T111": {
+    "description": "CPU 1 reached its maximum allowed temperature",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T112."
+    ]
+  },
+  "T112": {
+    "description": "CPU 1 thermal limit exceeded; throttling or shutdown imminent",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Power the system down for serveral minutes, then power on and check for the error again.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "The CPU heatsink is not performing as expected."
+    ]
+  },
+  "T120": {
+    "description": "CPU 2 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T122."
+    ]
+  },
+  "T121": {
+    "description": "CPU 2 reached its maximum allowed temperature",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T122."
+    ]
+  },
+  "T122": {
+    "description": "CPU 2 thermal limit exceeded; throttling or shutdown imminent",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Power the system down for serveral minutes, then power on and check for the error again.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "The CPU heatsink is not performing as expected."
+    ]
+  },
+  "T200": {
+    "description": "CPU 1 memory bank 1 is running warm",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T202."
+    ]
+  },
+  "T201": {
+    "description": "CPU 1 memory bank 1 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T202."
+    ]
+  },
+  "T202": {
+    "description": "CPU 1 memory bank 1 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal."
+    ]
+  },
+  "T210": {
+    "description": "CPU 1 memory bank 2 is running warm",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T212."
+    ]
+  },
+  "T211": {
+    "description": "CPU 1 memory bank 2 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T212."
+    ]
+  },
+  "T212": {
+    "description": "CPU 1 memory bank 2 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal."
+    ]
+  },
+  "T220": {
+    "description": "CPU 2 memory bank 1 is running warm",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T222."
+    ]
+  },
+  "T221": {
+    "description": "CPU 2 memory bank 1 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T222."
+    ]
+  },
+  "T222": {
+    "description": "CPU 2 memory bank 1 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal."
+    ]
+  },
+  "T230": {
+    "description": "CPU 2 memory bank 2 is running warm",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T232."
+    ]
+  },
+  "T231": {
+    "description": "CPU 2 memory bank 2 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T232."
+    ]
+  },
+  "T232": {
+    "description": "CPU 2 memory bank 2 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal."
+    ]
+  },
+  "T240": {
+    "description": "Memory thermal protection triggered",
+    "severity": "cat",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Remove all but one DIMM. If diagnostic alert continues, swap with another DIMM. Add back DIMMs one at a time to determine problem DIMM.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal."
+    ]
+  },
+  "T250": {
+    "description": "CPU voltage regulator is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T252."
+    ]
+  },
+  "T252": {
+    "description": "CPU voltage regulator thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T310": {
+    "description": "Chipset (PCH) is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T311."
+    ]
+  },
+  "T311": {
+    "description": "Chipset (PCH) thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T400": {
+    "description": "Ambient temperature is high",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T401."
+    ]
+  },
+  "T401": {
+    "description": "Ambient temperature is critically high",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Confirm the front ambient temp cable is connected to the motherboard, and the front of the system is not blocked.",
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Reboot system, enter system setup, and increase the fan speed to setting 2 or 3.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits."
+    ]
+  },
+  "T402": {
+    "description": "Ambient temperature is high",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T403."
+    ]
+  },
+  "T403": {
+    "description": "Ambient temperature is critically high",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Confirm the front ambient temp cable is connected to the motherboard, and the front of the system is not blocked.",
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Reboot system, enter system setup, and increase the fan speed to setting 2 or 3.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits."
+    ]
+  },
+  "T410": {
+    "description": "Motherboard temperature sensor 1 is high",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T411."
+    ]
+  },
+  "T411": {
+    "description": "Motherboard temperature sensor 1 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T420": {
+    "description": "Motherboard temperature sensor 2 is high",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T421."
+    ]
+  },
+  "T421": {
+    "description": "Motherboard temperature sensor 2 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T430": {
+    "description": "Motherboard temperature sensor 3 is high",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T431."
+    ]
+  },
+  "T431": {
+    "description": "Motherboard temperature sensor 3 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T440": {
+    "description": "Motherboard temperature sensor 4 is high",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T441."
+    ]
+  },
+  "T441": {
+    "description": "Motherboard temperature sensor 4 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T510": {
+    "description": "Power supply 1 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T511."
+    ]
+  },
+  "T511": {
+    "description": "Power supply 1 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T520": {
+    "description": "Power supply 2 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T521."
+    ]
+  },
+  "T521": {
+    "description": "Power supply 2 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T621": {
+    "description": "Internal PCIe drive 1 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T631."
+    ]
+  },
+  "T622": {
+    "description": "Internal PCIe drive 2 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T632."
+    ]
+  },
+  "T623": {
+    "description": "Internal PCIe drive 3 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T633."
+    ]
+  },
+  "T624": {
+    "description": "Internal PCIe drive 4 is running hot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T634."
+    ]
+  },
+  "T631": {
+    "description": "Internal PCIe drive 1 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T632": {
+    "description": "Internal PCIe drive 2 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T633": {
+    "description": "Internal PCIe drive 3 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T634": {
+    "description": "Internal PCIe drive 4 thermal limit exceeded",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "Unexpected SW/HW malfunction."
+    ]
+  },
+  "T7x1": {
+    "description": "Quad M.2 adapter card 1 is running hot; the second hex digit is the drive slot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T7x5."
+    ]
+  },
+  "T7x2": {
+    "description": "Quad M.2 adapter card 2 is running hot; the second hex digit is the drive slot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T7x6."
+    ]
+  },
+  "T7x3": {
+    "description": "Quad M.2 adapter card 3 is running hot; the second hex digit is the drive slot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T7x7."
+    ]
+  },
+  "T7x4": {
+    "description": "Quad M.2 adapter card 4 is running hot; the second hex digit is the drive slot",
+    "severity": "warn",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code T7x8."
+    ]
+  },
+  "T7x5": {
+    "description": "Quad M.2 adapter card 1 thermal limit exceeded; the second hex digit is the drive slot",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Remove the quad M.2 adapter from the system.  Remove the cover and heatsink.  Confirm thermal pads are in place and making good connection between the heatsink and M.2",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Reboot system, enter system setup, and increase the fan speed to setting 2 or 3.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "The quad M.2 adapter heatsink is not performing as expected."
+    ]
+  },
+  "T7x6": {
+    "description": "Quad M.2 adapter card 2 thermal limit exceeded; the second hex digit is the drive slot",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Remove the quad M.2 adapter from the system.  Remove the cover and heatsink.  Confirm thermal pads are in place and making good connection between the heatsink and M.2",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Reboot system, enter system setup, and increase the fan speed to setting 2 or 3.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "The quad M.2 adapter heatsink is not performing as expected."
+    ]
+  },
+  "T7x7": {
+    "description": "Quad M.2 adapter card 3 thermal limit exceeded; the second hex digit is the drive slot",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Remove the quad M.2 adapter from the system.  Remove the cover and heatsink.  Confirm thermal pads are in place and making good connection between the heatsink and M.2",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Reboot system, enter system setup, and increase the fan speed to setting 2 or 3.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "The quad M.2 adapter heatsink is not performing as expected."
+    ]
+  },
+  "T7x8": {
+    "description": "Quad M.2 adapter card 4 thermal limit exceeded; the second hex digit is the drive slot",
+    "severity": "err",
+    "category": "Thermal",
+    "origin": "thinkstation",
+    "repairs": [
+      "Check for ventilation clearance around system. Remove any dust of objects blocking air flow.",
+      "Check the ambient temperature in the room is within specified limits, typically 10-35 degrees celsius.",
+      "Remove the quad M.2 adapter from the system.  Remove the cover and heatsink.  Confirm thermal pads are in place and making good connection between the heatsink and M.2",
+      "Check diagnostic log for additional alerts, such as power, voltage, or fan alerts. Follow that repair action.",
+      "Check that all fans are connected.",
+      "Reboot system, enter system setup, and increase the fan speed to setting 2 or 3.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "The system does not have appropriate clearence for ventilation.",
+      "The temperature in the room is beyond specified limits.",
+      "A foreign object may be blocking or slowing the fan.",
+      "Power to the fan is abnormal.",
+      "The quad M.2 adapter heatsink is not performing as expected."
+    ]
+  },
+  "U100": {
+    "description": "Front-panel USB hub communication error",
+    "severity": "err",
+    "category": "USB",
+    "origin": "thinkstation",
+    "repairs": [
+      "Unplug the system, wait 30 seconds, plug in the system, and power up.",
+      "Download and run the 'Lenovo Super IO and Front Panel Firmware update utility'. This can be found on Lenovo's website in your system's Drivers and Software page.",
+      "Contact Lenovo service."
+    ],
+    "sources": [
+      "Communication issue between motherboard and front panel IO cable.",
+      "Embedded Super IO controller, or front panel IO USB hub firmware is downlevel."
+    ]
+  },
+  "U110": {
+    "description": "Front-panel charging port is drawing high current",
+    "severity": "warn",
+    "category": "USB",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code U111."
+    ]
+  },
+  "U111": {
+    "description": "Front-panel charging port is drawing critical over-current",
+    "severity": "err",
+    "category": "USB",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove device from front USB port."
+    ],
+    "sources": [
+      "A device in a USB port may be consuming too much power."
+    ]
+  },
+  "U120": {
+    "description": "Front-panel non-charging ports are drawing high current",
+    "severity": "warn",
+    "category": "USB",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code U121."
+    ]
+  },
+  "U121": {
+    "description": "Front-panel non-charging ports are drawing critical over-current",
+    "severity": "err",
+    "category": "USB",
+    "origin": "thinkstation",
+    "repairs": [
+      "Remove device from front USB port."
+    ],
+    "sources": [
+      "A device in a USB port may be consuming too much power."
+    ]
+  },
+  "U130": {
+    "description": "Front-panel USB bus is drawing high current",
+    "severity": "warn",
+    "category": "USB",
+    "origin": "thinkstation",
+    "repairs": [],
+    "sources": [
+      "This warning should not impact the stability of the system. If the warning occurs multiple time within a short period, follow the suggested actions for code U121."
+    ]
+  }
+}
