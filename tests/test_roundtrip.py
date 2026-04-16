@@ -9,9 +9,10 @@ import math
 import os
 import struct
 import sys
+from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from lenigma import decode_pcm, SAMPLE_RATE, _BANDS
+from lenigma import decode_pcm, decode_wav, SAMPLE_RATE, _BANDS
 
 # center frequency per symbol, from band midpoints
 _CENTER = {label: (lo + hi) / 2 for lo, hi, label in _BANDS}
@@ -104,6 +105,61 @@ def add_noise(pcm: list[int], snr_db: float, seed: int = 1) -> list[int]:
     return out
 
 
+def run_audio_samples() -> tuple[int, int]:
+    """
+    Scan tests/audio/*.wav and check each against its expected codes.
+
+    Expected codes are taken from:
+      1. the first dash-separated token of the filename, e.g.
+         `S001-thinkstation-p520-bench.wav` -> ["S001"]
+      2. a sibling `.txt` with the same base name containing a
+         comma-separated list of codes (overrides / extends the filename
+         expectation when present). Lines starting with '#' are ignored.
+
+    Returns (passed, total). Silently skips if the audio dir is empty.
+    """
+    audio_dir = Path(__file__).resolve().parent / "audio"
+    wavs = sorted(audio_dir.glob("*.wav")) if audio_dir.is_dir() else []
+    if not wavs:
+        return 0, 0
+    print(f"\nReal-audio samples ({len(wavs)} file{'s' if len(wavs) != 1 else ''}):")
+    passed = 0
+    for wav in wavs:
+        stem = wav.stem
+        expected: list[str] = []
+        txt = wav.with_suffix(".txt")
+        if txt.is_file():
+            for line in txt.read_text().splitlines():
+                line = line.split("#", 1)[0].strip()
+                if not line:
+                    continue
+                expected.extend(c.strip() for c in line.split(",") if c.strip())
+        if not expected:
+            first_token = stem.split("-", 1)[0]
+            if first_token:
+                expected = [first_token]
+        if not expected:
+            print(f"  SKIP {wav.name}: no expected codes (filename or .txt)")
+            continue
+
+        try:
+            result = decode_wav(str(wav))
+        except Exception as e:
+            print(f"  FAIL {wav.name}: decode raised {type(e).__name__}: {e}")
+            continue
+        got = result["codes"]
+        missing = [c for c in expected if c not in got]
+        if missing:
+            print(f"  FAIL {wav.name}: expected {expected}, missing {missing}, "
+                  f"got {got}")
+        else:
+            extra = [c for c in got if c not in expected]
+            note = f" (+extra {extra})" if extra else ""
+            print(f"  PASS {wav.name}: codes={got}{note}")
+            passed += 1
+    return passed, len(wavs)
+
+
 def main() -> int:
     cases = [
         ("serial 'AB123456'",
@@ -142,6 +198,10 @@ def main() -> int:
         result = decode_pcm(pcm)
         ok = result["codes"] == ["S001"]
         print(f"  SNR={snr:2d}dB  {'PASS' if ok else 'FAIL'}  codes={result['codes']}")
+
+    audio_pass, audio_total = run_audio_samples()
+    if audio_total and audio_pass != audio_total:
+        all_ok = False
 
     return 0 if all_ok else 1
 
