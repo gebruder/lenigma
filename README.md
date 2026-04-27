@@ -23,7 +23,7 @@ pip install sounddevice numpy    # only for the `listen` subcommand
 ```sh
 # Look up a known code
 lenigma lookup 0281
-lenigma lookup S001
+lenigma lookup 0001 -l    # -l also prints severity, category, repair steps
 lenigma lookup B8FF       # wildcards resolve: matches the B8xx template
 
 # List every known code
@@ -43,6 +43,12 @@ Output looks like:
 serial: AB123456
 code:   S001   at 2026-04-16 10:30:00   — 3.3 V standby rail is above tolerance
 ```
+
+## Browsing the code database
+
+A static, GitHub-rendered table of all 204 codes (description + Lenovo's
+repair steps, grouped by category) lives at [`CODES.md`](./CODES.md).
+Regenerate from `codes.json` with `python3 tools/gen_codes_md.py`.
 
 ## Extending the code database
 

@@ -87,18 +87,40 @@ def _safe_str(s: str) -> str:
     )
 
 
-def _normalise_extras(data: dict) -> dict[str, str]:
-    out: dict[str, str] = {}
+# Rich records (severity, category, repairs[], sources[]) for codes that
+# came from a JSON entry rather than the inline starter dict. Populated
+# alongside `CODES` by `load_extra_codes`. `cmd_lookup --long` reaches
+# in here to print the repair steps.
+_FULL: dict[str, dict] = {}
+
+
+def _normalise_extras(data: dict) -> tuple[dict[str, str], dict[str, dict]]:
+    """Return (descriptions, full_records). Both are sanitised."""
+    descriptions: dict[str, str] = {}
+    full: dict[str, dict] = {}
     for code, val in data.items():
         if not isinstance(code, str) or code != _safe_str(code):
             continue
         if isinstance(val, str):
-            out[code] = _safe_str(val)
+            descriptions[code] = _safe_str(val)
         elif isinstance(val, dict):
             desc = val.get("description") or val.get("desc") or ""
-            if desc:
-                out[code] = _safe_str(desc)
-    return out
+            if not desc:
+                continue
+            descriptions[code] = _safe_str(desc)
+            record: dict = {"description": _safe_str(desc)}
+            for field_name in ("severity", "category", "origin"):
+                v = val.get(field_name)
+                if isinstance(v, str):
+                    record[field_name] = _safe_str(v)
+            for list_name in ("repairs", "sources"):
+                items = val.get(list_name)
+                if isinstance(items, list):
+                    record[list_name] = [
+                        _safe_str(s) for s in items if isinstance(s, str)
+                    ]
+            full[code] = record
+    return descriptions, full
 
 
 def load_extra_codes() -> None:
@@ -109,7 +131,9 @@ def load_extra_codes() -> None:
     ):
         if path.is_file():
             try:
-                CODES.update(_normalise_extras(json.loads(path.read_text())))
+                descs, full = _normalise_extras(json.loads(path.read_text()))
+                CODES.update(descs)
+                _FULL.update(full)
             except (json.JSONDecodeError, OSError) as e:
                 print(f"warning: skipped {path}: {e}", file=sys.stderr)
 
@@ -633,6 +657,18 @@ def cmd_lookup(args):
     if hit:
         key, desc = hit
         print(f"{_safe_str(key)}  {_safe_str(desc)}")
+        if args.long:
+            full = _FULL.get(key)
+            if full:
+                cat = full.get("category")
+                sev = full.get("severity")
+                meta_bits = [b for b in (sev, cat) if b]
+                if meta_bits:
+                    print(f"  [{' · '.join(_safe_str(b) for b in meta_bits)}]")
+                for r in full.get("repairs", []):
+                    print(f"  · {_safe_str(r)}")
+                for s in full.get("sources", []):
+                    print(f"  source: {_safe_str(s)}")
         return 0
     print(f"{_safe_str(code)}  unknown code", file=sys.stderr)
     return 1
@@ -707,6 +743,8 @@ def main():
 
     pl = sub.add_parser("lookup", help="look up a known error code")
     pl.add_argument("code", help="error code, e.g. 0281 or S001")
+    pl.add_argument("-l", "--long", action="store_true",
+                    help="also print severity, category, and repair steps")
     pl.set_defaults(func=cmd_lookup)
 
     sub.add_parser("list", help="list known codes").set_defaults(func=cmd_list)
