@@ -1,5 +1,6 @@
 # Source: courtesy of Nero Vanbiervliet, from a 2023 Substack analysis
 # of the ThinkPad musical-tone error code. Used here with permission.
+# https://nerology.substack.com/p/my-broken-thinkpad-plays-music-upon
 #
 # Three identical repetitions of the strong-signal portion of a smart-
 # beep transmission (START + 0 + 1 + sustained-0 + 1 + 2, separated by

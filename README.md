@@ -107,9 +107,11 @@ private advisory endpoint listed there, not public issues.
 
 ## Acknowledgments
 
-- **Nero Vanbiervliet** — 2023 Substack spectrogram analysis of the
-  ThinkPad smart-beep error code, which independently confirmed the
-  FSK band layout, and the recording shared in `tests/audio/nero.wav`.
+- **Nero Vanbiervliet** — [2023 spectrogram
+  analysis](https://nerology.substack.com/p/my-broken-thinkpad-plays-music-upon)
+  of the ThinkPad smart-beep error code, which independently confirmed
+  the FSK band layout, and the recording shared in
+  `tests/audio/nero.wav`.
 - **Carlos** — surfacing the reference video for error 0282 alongside
   that analysis.
 
