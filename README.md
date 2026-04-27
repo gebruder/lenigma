@@ -112,8 +112,8 @@ private advisory endpoint listed there, not public issues.
   of the ThinkPad smart-beep error code, which independently confirmed
   the FSK band layout, and the recording shared in
   `tests/audio/nero.wav`.
-- **Carlos** — surfacing the reference video for error 0282 alongside
-  that analysis.
+- **Carlos** — finding the demo video of the original Android app in
+  action that Nero links from the same post.
 
 ## License
 
