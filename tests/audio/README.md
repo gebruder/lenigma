@@ -5,9 +5,14 @@ testing of the decoder against real-world audio.
 
 ## Required format
 
-16 kHz · mono · 16-bit signed PCM · WAV.
+16-bit signed PCM WAV. The decoder accepts:
 
-Anything else will be rejected by `decode_wav()`. Convert with:
+- Any sample rate that's an integer multiple of 16 kHz (16, 32, 48, …) —
+  higher rates are auto-downsampled.
+- 1-8 channels — multi-channel files are auto-downmixed to mono by
+  averaging.
+
+Other rates (e.g. 44.1 kHz) need to be converted first:
 
 ```sh
 ffmpeg -i input.m4a -ar 16000 -ac 1 -sample_fmt s16 output.wav

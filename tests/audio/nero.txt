@@ -1,0 +1,7 @@
+# Three identical repetitions of START + 0 + 1 + 0 (sustained ~600 ms)
+# + 1 + 2, separated by ~1.65 s. Tones land cleanly in the FSK bands
+# (812 / 859 / 906 / 2058 Hz = 0, 1, 2, START) but the per-repetition
+# sequence isn't a valid 18- or 22-nibble protocol message. Useful
+# regression sample for confirming the decoder still finds every tone
+# in a clean recording. Source WAV is 48 kHz stereo; the decoder
+# auto-downmixes and decimates.

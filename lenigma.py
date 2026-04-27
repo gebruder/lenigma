@@ -470,28 +470,66 @@ def decode_pcm(samples: Sequence[int], sample_rate: int = SAMPLE_RATE) -> dict:
     return {"symbols": syms, "messages": msgs, "codes": codes, "serial": serial}
 
 
-# Max WAV size the decoder will accept, in samples. A full smart-beep
-# transmission is well under a minute; 5 minutes is a generous ceiling
-# that still prevents a crafted WAV from OOMing the process.
+# Max WAV size the decoder will accept, in samples (at 16 kHz). A full
+# smart-beep transmission is well under a minute; 5 minutes is a generous
+# ceiling that still prevents a crafted WAV from OOMing the process.
 MAX_WAV_SAMPLES = SAMPLE_RATE * 300
+
+
+def _downsample_int(samples: list[int], factor: int) -> list[int]:
+    """
+    Box-filter then decimate by an integer factor. The box-filter
+    average attenuates frequencies near the destination Nyquist enough
+    to keep aliasing out of the 690-2125 Hz protocol band, which is
+    well below SAMPLE_RATE / 2. Pure-stdlib; quality is fine for
+    integer ratios like 48 kHz -> 16 kHz (factor 3).
+    """
+    if factor <= 1:
+        return list(samples)
+    out: list[int] = []
+    n = len(samples)
+    i = 0
+    while i + factor <= n:
+        out.append(sum(samples[i:i + factor]) // factor)
+        i += factor
+    return out
 
 
 def decode_wav(path: str) -> dict:
     with wave.open(path, "rb") as w:
-        if w.getframerate() != SAMPLE_RATE:
-            raise ValueError(f"{path}: expected {SAMPLE_RATE} Hz, got {w.getframerate()}")
+        rate = w.getframerate()
+        channels = w.getnchannels()
         if w.getsampwidth() != 2:
             raise ValueError(f"{path}: expected 16-bit, got {w.getsampwidth()*8}")
-        if w.getnchannels() != 1:
-            raise ValueError(f"{path}: expected mono, got {w.getnchannels()} channels")
-        nframes = w.getnframes()
-        if nframes > MAX_WAV_SAMPLES:
+        if channels < 1 or channels > 8:
+            raise ValueError(f"{path}: unexpected channel count {channels}")
+        if rate != SAMPLE_RATE and (rate <= 0 or rate % SAMPLE_RATE != 0):
             raise ValueError(
-                f"{path}: {nframes/SAMPLE_RATE:.0f}s is longer than the "
+                f"{path}: sample rate {rate} Hz isn't an integer multiple of "
+                f"{SAMPLE_RATE} Hz. Convert with:\n"
+                f"  ffmpeg -i {path} -ar 16000 -ac 1 -sample_fmt s16 out.wav"
+            )
+        nframes = w.getnframes()
+        # Cap source-rate samples so the post-downmix/decimate buffer
+        # is always under MAX_WAV_SAMPLES.
+        max_src = MAX_WAV_SAMPLES * (rate // SAMPLE_RATE if rate >= SAMPLE_RATE else 1)
+        if nframes > max_src:
+            raise ValueError(
+                f"{path}: {nframes/rate:.0f}s is longer than the "
                 f"{MAX_WAV_SAMPLES/SAMPLE_RATE:.0f}s maximum"
             )
         raw = w.readframes(nframes)
-    samples = list(struct.unpack("<%dh" % (len(raw) // 2), raw))
+    interleaved = list(struct.unpack("<%dh" % (len(raw) // 2), raw))
+    if channels > 1:
+        # Downmix by averaging across channels per frame.
+        samples = [
+            sum(interleaved[i:i + channels]) // channels
+            for i in range(0, len(interleaved), channels)
+        ]
+    else:
+        samples = interleaved
+    if rate != SAMPLE_RATE:
+        samples = _downsample_int(samples, rate // SAMPLE_RATE)
     return decode_pcm(samples)
 
 
