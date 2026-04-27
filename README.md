@@ -105,6 +105,14 @@ and after.
 See [`SECURITY.md`](./SECURITY.md). Vulnerability reports go to the
 private advisory endpoint listed there, not public issues.
 
+## Acknowledgments
+
+- **Nero Vanbiervliet** — 2023 Substack spectrogram analysis of the
+  ThinkPad smart-beep error code, which independently confirmed the
+  FSK band layout, and the recording shared in `tests/audio/nero.wav`.
+- **Carlos** — surfacing the reference video for error 0282 alongside
+  that analysis.
+
 ## License
 
 MIT — see [`LICENSE`](./LICENSE).
