@@ -17,12 +17,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - name: Install
+        run: pip install .
       - name: Round-trip decoder tests
         run: python tests/test_roundtrip.py
       - name: CLI smoke tests
         run: |
-          python lenigma.py lookup 0281
-          python lenigma.py lookup S001
-          python lenigma.py lookup B8FF    # hex wildcard should resolve to B8xx
-          python lenigma.py lookup 281     # short form should zero-pad
-          python lenigma.py list > /dev/null
+          lenigma lookup 0281
+          lenigma lookup 0001 -l
+          lenigma lookup B8FF      # hex wildcard should resolve to B8xx
+          lenigma lookup 281       # short form should zero-pad
+          lenigma list > /dev/null
+      - name: CODES.md is up to date with codes.json
+        run: |
+          python3 tools/gen_codes_md.py
+          git diff --exit-code CODES.md

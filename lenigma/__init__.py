@@ -680,6 +680,15 @@ def cmd_list(_args):
     return 0
 
 
+def _save_wav(path: str, pcm: list[int]) -> None:
+    """Write 16 kHz mono 16-bit PCM to `path`."""
+    with wave.open(path, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(SAMPLE_RATE)
+        w.writeframes(b"".join(struct.pack("<h", s) for s in pcm))
+
+
 def cmd_listen(args):
     if args.seconds <= 0:
         print(f"--seconds must be positive, got {args.seconds}", file=sys.stderr)
@@ -716,11 +725,22 @@ def cmd_listen(args):
         print("no audio captured", file=sys.stderr)
         return 1
 
+    # Save the raw capture *before* decoding so even a decoder crash
+    # leaves a WAV on disk that the user can share for diagnosis.
+    if args.save:
+        try:
+            _save_wav(args.save, pcm)
+            print(f"saved capture: {args.save}")
+        except OSError as e:
+            print(f"warning: could not save {args.save}: {e}", file=sys.stderr)
+
     result = decode_pcm(pcm)
     if not _print_result(result, verbose=args.verbose):
         print("no valid messages decoded — try again, closer to the speaker")
         if not args.verbose:
             print("(re-run with --verbose to see every detected tone)")
+        if not args.save:
+            print("(re-run with --save out.wav to keep the recording for sharing)")
         return 1
     return 0
 
@@ -751,6 +771,9 @@ def main():
 
     ln = sub.add_parser("listen", help="capture from mic and decode")
     ln.add_argument("--seconds", type=float, default=15.0)
+    ln.add_argument("--save", metavar="FILE",
+                    help="write the captured audio to FILE (16 kHz mono WAV) "
+                         "for later analysis or sharing in a bug report")
     ln.add_argument("-v", "--verbose", action="store_true",
                     help="print every detected tone")
     ln.set_defaults(func=cmd_listen)

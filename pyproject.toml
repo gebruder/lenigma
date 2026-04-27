@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lenigma"
+version = "0.1.0"
+description = "Decode Lenovo ThinkStation/ThinkPad smart-beep error codes from a microphone or WAV file"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Davi Ottenheimer", email = "gebruder@ottenheimer.app" },
+]
+keywords = ["lenovo", "thinkstation", "thinkpad", "smart-beep", "fsk", "diagnostics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: System :: Hardware",
+]
+
+[project.optional-dependencies]
+listen = ["sounddevice", "numpy"]
+
+[project.urls]
+Homepage = "https://github.com/gebruder/lenigma"
+Issues = "https://github.com/gebruder/lenigma/issues"
+Source = "https://github.com/gebruder/lenigma"
+
+[project.scripts]
+lenigma = "lenigma:main"
+
+[tool.setuptools.packages.find]
+include = ["lenigma*"]
+
+[tool.setuptools.package-data]
+lenigma = ["codes.json"]

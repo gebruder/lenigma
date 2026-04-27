@@ -36,7 +36,7 @@ def cell(s: str) -> str:
 
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
-    data = json.loads((root / "codes.json").read_text())
+    data = json.loads((root / "lenigma" / "codes.json").read_text())
 
     groups: dict[str, list[tuple[str, dict]]] = defaultdict(list)
     for code, entry in data.items():

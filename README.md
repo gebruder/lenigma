@@ -9,13 +9,18 @@ or raw PCM bytes.
 
 ## Install
 
-Single file, standard library only for the core decoder. Live mic capture
-needs two extras:
+```sh
+pip install lenigma                   # core decoder + lookup
+pip install "lenigma[listen]"         # also install sounddevice + numpy
+                                      # for live microphone capture
+```
+
+Or run from a clone without installing:
 
 ```sh
 git clone https://github.com/gebruder/lenigma
 cd lenigma
-pip install sounddevice numpy    # only for the `listen` subcommand
+python3 -m lenigma lookup 0281
 ```
 
 ## Usage
@@ -23,18 +28,20 @@ pip install sounddevice numpy    # only for the `listen` subcommand
 ```sh
 # Look up a known code
 lenigma lookup 0281
-lenigma lookup 0001 -l    # -l also prints severity, category, repair steps
-lenigma lookup B8FF       # wildcards resolve: matches the B8xx template
+lenigma lookup 0001 -l            # -l also prints severity, category, repair steps
+lenigma lookup B8FF               # wildcards resolve: matches the B8xx template
 
 # List every known code
 lenigma list
 
 # Capture from the default mic for N seconds, decode
-python3 lenigma.py listen --seconds 15
-python3 lenigma.py listen --seconds 30 -v   # -v prints every detected tone
+lenigma listen --seconds 30
+lenigma listen --seconds 30 -v    # -v prints every detected tone
+lenigma listen --save out.wav     # also save the raw recording for sharing
 
-# Decode a saved recording (must be 16 kHz mono 16-bit PCM WAV)
-python3 lenigma.py wav recording.wav
+# Decode a saved recording (16-bit PCM WAV, any integer-multiple
+# sample rate of 16 kHz, mono or multi-channel)
+lenigma wav recording.wav
 ```
 
 Output looks like:
